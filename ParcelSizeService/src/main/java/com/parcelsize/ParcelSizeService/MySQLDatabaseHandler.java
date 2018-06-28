@@ -26,7 +26,7 @@ public class MySQLDatabaseHandler implements IDatabaseHandler{
 			this.connectionSource = new JdbcConnectionSource(databaseUrl, "root", "testme!1517#");
 			System.out.println("Connected to Database");
 		} catch (SQLException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
 		
 	}
