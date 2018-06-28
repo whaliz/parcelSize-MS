@@ -13,7 +13,7 @@ public class MySQLDatabaseHandler implements IDatabaseHandler{
 
 	private ConnectionSource connectionSource;
 	private String databaseUrl = "jdbc:mysql://localhost:3306/parcelsizedb";
-	private Dao<Parceldimension, String> pDao;
+	private Dao<Parceldimension, String> pDao; 
 	
 	public MySQLDatabaseHandler() {
 		
