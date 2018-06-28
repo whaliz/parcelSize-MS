@@ -17,7 +17,7 @@ public class MySQLDatabaseHandler implements IDatabaseHandler{
 	
 	public MySQLDatabaseHandler() {
 		
-	}
+	} 
 	
 	@Override
 	public void openConnection() {

@@ -28,7 +28,7 @@ public class ParcelSizeRESTController {
 			if(girth <= parceldimension.getMaxGirth()) {
 				p.setSize(parceldimension.getSize());
 				return p;
-			}
+			} 
 		}
 		p.setSize(Parcelsize.UNDEFINED);
 		
