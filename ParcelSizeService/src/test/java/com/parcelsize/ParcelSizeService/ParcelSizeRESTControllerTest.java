@@ -29,6 +29,7 @@ public class ParcelSizeRESTControllerTest {
 	
 	@Before
 	public void setup() {
+		// setup the mvc context for mocking the rest controller and its environment
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	
