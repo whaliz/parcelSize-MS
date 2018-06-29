@@ -23,6 +23,10 @@ public class ParcelSizeRESTController {
 		databasehandler.openConnection();
 		List<Parceldimension> dimensions = databasehandler.getParceldimensions();
 		
+		if(p.getDepth() < 1 | p.getHeight() < 1 | p.getWidth() < 1) {
+			return p;
+		}
+		
 		int girth = calculateGirth(p);
 		for (Parceldimension parceldimension : dimensions) {
 			if(girth <= parceldimension.getMaxGirth()) {
