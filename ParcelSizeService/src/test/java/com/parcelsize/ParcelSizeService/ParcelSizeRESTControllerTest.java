@@ -152,6 +152,7 @@ public class ParcelSizeRESTControllerTest {
 		IDatabaseHandler databasehandler = new MySQLDatabaseHandler();
 		databasehandler.openConnection();
 		
+		// test if request on db is fulfilled
 		assertNotNull(databasehandler.getParceldimensions());
 		
 	}
