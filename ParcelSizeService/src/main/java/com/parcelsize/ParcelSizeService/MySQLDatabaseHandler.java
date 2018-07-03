@@ -12,7 +12,7 @@ import com.j256.ormlite.table.TableUtils;
 public class MySQLDatabaseHandler implements IDatabaseHandler{
 
 	private ConnectionSource connectionSource;
-	private String databaseUrl = "jdbc:mysql://localhost:3306/parcelsizedb";
+	private String databaseUrl = "jdbc:mysql://172.18.0.2:3306/parcelsizedb?autoReconnect=true&useSSL=false";
 	private Dao<Parceldimension, String> pDao; 
 	
 	public MySQLDatabaseHandler() {
@@ -23,7 +23,7 @@ public class MySQLDatabaseHandler implements IDatabaseHandler{
 	public void openConnection() {
 //		jdbc:mysql://my-database-host/my-database-name
 		try {
-			this.connectionSource = new JdbcConnectionSource(databaseUrl, "root", "testme!1517#");
+			this.connectionSource = new JdbcConnectionSource(databaseUrl, "test", "testme!1517#");
 			System.out.println("Connected to Database");
 		} catch (SQLException e) {
 			e.printStackTrace();
