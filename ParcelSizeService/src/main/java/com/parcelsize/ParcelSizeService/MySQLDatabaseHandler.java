@@ -12,7 +12,8 @@ import com.j256.ormlite.table.TableUtils;
 public class MySQLDatabaseHandler implements IDatabaseHandler{
 
 	private ConnectionSource connectionSource;
-	private String databaseUrl = "jdbc:mysql://172.18.0.2:3306/parcelsizedb?autoReconnect=true&useSSL=false";
+	// 172.18.0.2
+	private String databaseUrl = "jdbc:mysql://parceldb:3306/parcelsizedb?autoReconnect=true&useSSL=false";
 	private Dao<Parceldimension, String> pDao; 
 	
 	public MySQLDatabaseHandler() {
@@ -34,6 +35,7 @@ public class MySQLDatabaseHandler implements IDatabaseHandler{
 	@Override
 	public void createParcelSizeTable() {
 		try {
+			TableUtils.dropTable(connectionSource, Parceldimension.class, true);
 			TableUtils.createTableIfNotExists(connectionSource, Parceldimension.class);
 		} catch (SQLException e) {
 			e.printStackTrace();
