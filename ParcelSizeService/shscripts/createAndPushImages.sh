@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "laufende Vagrant Instanz killen"
-vagrant destroy -f
+vagrant remove "TestingEnvironment_Ubuntu_With_Docker"
 
 echo "Test-VM mit vorintsalliertem Docker über vagrantfile starten"
 
