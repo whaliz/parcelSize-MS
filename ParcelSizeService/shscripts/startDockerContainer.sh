@@ -11,4 +11,4 @@ vagrant ssh -c 'docker run -p 8888:8080 -d --net parcelconfig-net --name=webpage
 vagrant ssh -c 'docker run -p 3306:3306 -e  MYSQL_ROOT_PASSWORD=root -d --net parcelconfig-net --name=parceldb mysql:5.7'
 
 # mysql dump zurückspielen auf gestartete datenbank
-cat db/backup.sql | vagrant ssh -c 'docker exec -i parceldb /usr/bin/mysql -u root --password=root'
+cat db/backup.sql | vagrant ssh -c 'docker exec -i parceldb /usr/bin/mysql -u root --password=root' 

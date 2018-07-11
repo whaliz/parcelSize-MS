@@ -24,5 +24,5 @@ do
 
 done
 
-echo "Speichere Images und lade... Abgeschlossen."
+echo "Speichere Images und lade.... Abgeschlossen."
 
