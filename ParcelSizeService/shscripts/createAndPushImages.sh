@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "laufende Vagrant Instanz killen"
+vagrant destroy -f
+
 echo "Test-VM mit vorintsalliertem Docker über vagrantfile starten"
 
 vagrant up
