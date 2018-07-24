@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = ParcelSizeControllerUnitTest.class, secure = false)
+//@WebMvcTest(value = ParcelSizeControllerUnitTest.class, secure = false)
 public class ParcelSizeControllerUnitTest {
 	 
 	private IDatabaseHandler databaseMock;
@@ -40,17 +40,6 @@ public class ParcelSizeControllerUnitTest {
 		assertEquals(Parcelsize.XS, controller.calculateSize(p).getSize());
 
 	}
-	
-	
-	@Test
-	public void parcelSizeDBConnection() throws Exception {
-		
-		IDatabaseHandler databasehandler = new MySQLDatabaseHandler();
-		databasehandler.openConnection();
-		
-		// test if request on db is fulfilled
-		assertNotNull(databasehandler.getParceldimensions());
-		
-	}
+
 
 }
