@@ -19,8 +19,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(value = ParcelSizeRESTController.class, secure = false)
-public class ParcelSizeRESTControllerTest {
+@WebMvcTest(value = ParcelSizeIntegrationTest.class, secure = false)
+public class ParcelSizeIntegrationTest {
 	
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -31,6 +31,49 @@ public class ParcelSizeRESTControllerTest {
 	public void setup() {
 		// setup the mvc context for mocking the rest controller and its environment
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+	
+	@Test
+	public void checkStatus() throws Exception {
+		
+		Parcel p = new Parcel(1, 2, 2, Parcelsize.UNDEFINED);
+
+		//convert parcel to json
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonInString = mapper.writeValueAsString(p);
+		
+		// perform get request with requestbody containing parcel as json in order to mock service
+		mockMvc.perform(get("/size").contentType(MediaType.APPLICATION_JSON).content(jsonInString)).andExpect(status().isOk());
+		
+	}
+	
+
+	@Test
+	public void negativeStatusTest() throws Exception {
+		
+		Parcel p = new Parcel(-1, -1, -1, Parcelsize.UNDEFINED);
+
+		//convert parcel to json
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonInString = mapper.writeValueAsString(p);
+		
+		// perform get request with requestbody containing parcel as json in order to mock service
+		mockMvc.perform(get("/size").contentType(MediaType.APPLICATION_JSON).content(jsonInString)).andExpect(status().isOk())
+		.andExpect(content().contentType("application/json;charset=UTF-8"))
+		.andExpect(jsonPath("$.size").value("S"));
+		
+	}
+
+	
+	@Test
+	public void parcelSizeDBConnection() throws Exception {
+		
+		IDatabaseHandler databasehandler = new MySQLDatabaseHandler();
+		databasehandler.openConnection();
+		
+		// test if request on db is fulfilled
+		assertNotNull(databasehandler.getParceldimensions());
+		
 	}
 	
 	@Test
@@ -143,18 +186,6 @@ public class ParcelSizeRESTControllerTest {
 		mockMvc.perform(get("/size").contentType(MediaType.APPLICATION_JSON).content(jsonInString)).andExpect(status().isOk())
 		.andExpect(content().contentType("application/json;charset=UTF-8"))
 		.andExpect(jsonPath("$.size").value("UNDEFINED"));
-		
-	}
-	
-	
-	@Test
-	public void parcelSizeDBConnection() throws Exception {
-		
-		IDatabaseHandler databasehandler = new MySQLDatabaseHandler();
-		databasehandler.openConnection();
-		
-		// test if request on db is fulfilled
-		assertNotNull(databasehandler.getParceldimensions());
 		
 	}
 

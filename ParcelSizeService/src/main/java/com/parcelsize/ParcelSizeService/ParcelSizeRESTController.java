@@ -14,12 +14,15 @@ public class ParcelSizeRESTController {
 	
 	private IDatabaseHandler databasehandler;
 	
-
+	public ParcelSizeRESTController(IDatabaseHandler handler) {
+		if(handler == null) {
+			databasehandler = new MySQLDatabaseHandler();
+		}
+	}
 
 	@RequestMapping("/size")
 	public Parcel calculateSize(@RequestBody Parcel p) {
 
-		databasehandler = new MySQLDatabaseHandler();
 		databasehandler.openConnection();
 		List<Parceldimension> dimensions = databasehandler.getParceldimensions();
 		

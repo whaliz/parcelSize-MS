@@ -9,7 +9,7 @@ vagrant up
 
 echo "Test-VM gestartet"
 
-echo "Speichere Images und lade... Abgeschlossen."
+echo "Speichere Images und lade..."
 
 for var in "$@"
 do
@@ -19,7 +19,7 @@ do
 	#image auf asset server übertragen
 	# sftp vagrant@192.168.50.100:/vagrant/html/images <<< $'put '$var
 	
-	# images remote über shared folder laden
+	# images remote über shared folder laden, alternativ über wget mit http
 	vagrant ssh -c 'docker load -i /vagrant/'$var
 	
 	# temporär lokales image löschen
