@@ -1,4 +1,4 @@
-package com.parcelsize.ParcelSizeService;
+package com.parcelsize.ParcelSizeService.integration;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -16,6 +16,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.parcelsize.ParcelSizeService.IDatabaseHandler;
+import com.parcelsize.ParcelSizeService.MySQLDatabaseHandler;
+import com.parcelsize.ParcelSizeService.Parcel;
+import com.parcelsize.ParcelSizeService.Parcelsize;
 
 
 @RunWith(SpringRunner.class)
