@@ -17,6 +17,8 @@ public class ParcelSizeRESTController {
 	public ParcelSizeRESTController(IDatabaseHandler handler) {
 		if(handler == null) {
 			databasehandler = new MySQLDatabaseHandler();
+		}else {
+			databasehandler = handler;
 		}
 	}
 
@@ -26,26 +28,15 @@ public class ParcelSizeRESTController {
 		databasehandler.openConnection();
 		List<Parceldimension> dimensions = databasehandler.getParceldimensions();
 		
-		if(p.getDepth() < 1 | p.getHeight() < 1 | p.getWidth() < 1) {
-			return p;
-		}
-		
-		int girth = calculateGirth(p);
-		for (Parceldimension parceldimension : dimensions) {
-			if(girth <= parceldimension.getMaxGirth()) {
-				p.setSize(parceldimension.getSize());
-				return p;
-			} 
-		}
-		p.setSize(Parcelsize.UNDEFINED);
-		
-		return p;
+		ParcelSizeCalculator calc = new ParcelSizeCalculator();
+	
+		return calc.calcSizeForParcel(p, dimensions);
 	}
+
+	
 
 
 	
-	private int calculateGirth(Parcel p) {
-		return p.getHeight() + (2 * p.getWidth()) + (2 * p.getDepth());
-	}
+	
 
 }
