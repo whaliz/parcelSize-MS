@@ -45,7 +45,7 @@ public class ParcelSizeIntegrationTest {
 		//convert parcel to json
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonInString = mapper.writeValueAsString(p);
-		
+			
 		// perform get request with requestbody containing parcel as json in order to mock service
 		mockMvc.perform(get("/size").contentType(MediaType.APPLICATION_JSON).content(jsonInString)).andExpect(status().isOk());
 		
