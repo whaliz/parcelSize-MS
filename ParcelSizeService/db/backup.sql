@@ -21,7 +21,7 @@
 
 CREATE DATABASE parcelsizedb;
 USE parcelsizedb;
-CREATE USER 'test@'%' IDENTIFIED BY 'testme!1517#';
+CREATE USER 'test'@'%' IDENTIFIED BY 'testme!1517#';
 
 GRANT ALL ON *.* TO 'test'@'%';
 
